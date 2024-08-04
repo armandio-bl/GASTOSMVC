@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Pass>
+    <Contra Ver="0001">Initial Catalog=GASTOS_DEMO;Data Source=DESKTOP-2TS4VIA\SQLEXPRESS; User Id=sa;Password=12345;</Contra>
+	<EsSERVER Ver="0001">0</EsSERVER> 
+</Pass> 

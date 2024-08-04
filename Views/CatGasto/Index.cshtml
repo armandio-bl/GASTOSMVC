@@ -1,0 +1,66 @@
+﻿@model GASTOSMVC.Models.CatGastos
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/Tls/Tls.css" rel="stylesheet" />
+    <script src="~/Tls/Tls.js"></script>
+    <script type="text/javascript">
+        function SPSendCBX() {
+            gEBI("HDcbxGas").value = gEBI("cbxCatGastos").value;
+            gEBI("Frm").action = "@Url.Action("ConsCatGas", "CatGasto")"; gEBI("Frm").method = "post";
+            gEBI("Frm").submit();
+        }
+        function FNGuardar() {
+            if (!FNFrcWrt("txtGas", "Favor de escribir un concepto de Gasto", "txtGas")) return false;    
+            gEBI("HDcbxGas").value = gEBI("cbxCatGastos").value;
+            if (gEBI("cbxCatGastos").value=="") gEBI("HDcbxGas").value ="0" ;
+            gEBI("Frm").action = "@Url.Action("Guardar", "CatGasto")"; gEBI("Frm").method = "post";
+            gEBI("Frm").submit();
+
+        }
+        function FNBorrar() {
+            if (gEBI("cbxCatGastos").value == "") return false; 
+            if (confirm("¿Desea eliminar este regstro?")) {
+                gEBI("HDcbxGas").value = gEBI("cbxCatGastos").value;
+                if (gEBI("cbxCatGastos").value == "") gEBI("HDcbxGas").value = "0";
+                gEBI("Frm").action = "@Url.Action("Borrar", "CatGasto")"; gEBI("Frm").method = "post";
+                gEBI("Frm").submit();
+            }
+            else {
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <form id="Frm" name="Frm">
+        <div class="container">
+            <h2>Catalogo de Gastos</h2>
+            <div class="form-group">
+                <label for="sel1">Selecciona un Gasto:</label>
+                @Html.DropDownListFor(m => m.WCBXGastos, Model.LCBXGastos, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxCatGastos", @onChange = "SPSendCBX();" })
+            </div>
+            <div class="form-group">
+                <label for="Gasto">Nombre Gasto:</label>
+                <input id="txtGas" name="txtGas" placeholder="Gasto" Class="form-control" value="@Model.Gastos"/>
+            </div>
+            <input type="button" id="btnSve" name="btnSve" value="Guardar" class="btn btn-default" onclick="return FNGuardar();" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btnDel" name="btnDel" value="Borrar" class="btn btn-default" onclick="return FNBorrar();" />
+        </div>
+        <input type="hidden" id="HDEsGuardar" name="HDEsGuardar" value="0" />
+        <input type="hidden" id="HDcbxGas" name="HDcbxGas" value="0" />
+    </form>
+</body>
+</html>

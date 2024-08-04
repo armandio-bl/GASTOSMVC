@@ -1,0 +1,190 @@
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+	.close:hover,
+	.close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+
+
+.BodyMain{
+    background-image:url(../img/BKS-1.png); background-repeat:repeat; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;
+}
+
+.BtnSupIn
+{
+    background-image:url(../img/BtnSupA.png); background-repeat:no-repeat;	
+}
+.sBtnSupOut
+{
+    background-image:url(../img/BtnSupB.png); background-position:top; cursor:pointer; background-position:inherit; background-repeat:no-repeat;
+}
+/* -- */
+.btnIndexIn 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight:bold;
+	color: #FFFFFF;
+	text-transform: capitalize;
+	text-align:center;
+    cursor: hand; 
+	background:url(../img/BtnSupA.png);	
+	background-position:center;
+	height: 40px;
+	width: 120px;
+	background-repeat: no-repeat;
+	border: 0px solid;
+	cursor:pointer;
+}
+.btnIndexOut
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight:bold;
+	color: #FFFFFF;
+	text-transform: capitalize;
+	text-align:center;
+    cursor:pointer; 
+	background:url(../img/BtnSupB.png);
+	background-position:center;
+	height: 40px;
+	width: 120px;
+	background-repeat: no-repeat;
+	border: 0px solid;
+}
+
+.CrnLftUp
+{
+    background-image:url(../img/Prueba4_1_r1_c2.png); background-position:right bottom; background-repeat:no-repeat;
+}
+.RodCntUp
+{
+    background-image:url(../img/Prueba4_1_r1_c3.png); background-position:bottom; background-repeat:repeat-x;
+}
+.RodRgtUp
+{
+    background-image:url(../img/Prueba4_1_r1_c4.png); background-position:left bottom; background-repeat:no-repeat;
+}
+.RodLftMdl
+{
+    background-image:url(../img/Prueba4_1_r3_c2.png); background-position:right; background-repeat:repeat-y;
+}
+.BGColor
+{
+    margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; background-color:#570E0E;
+}
+.RodRgtMdl
+{
+    background-image:url(../img/Prueba4_1_r3_c4.png); background-position:left; background-repeat:repeat-y;
+}
+.CrnLftBtn
+{
+    background-image:url(../img/InfIzq.png); background-position:right top; background-repeat:no-repeat;
+}
+.RodCntBtn
+{
+    background-image:url(../img/BarraX.png); background-position:top; background-repeat:repeat-x;
+}
+.CrnRgtBtn
+{
+    background-image:url(../img/InfDer.png); background-position:left top; background-repeat:no-repeat;
+}
+.ColorBg
+{
+  background-color:Black;  
+}
+/**************************************F U E N T E S*************************************/
+.FtoMain
+{
+    font-family:sans-serif; color:#FFFFFF; font-weight:bold;
+}
+.FtoMenuI
+{
+    font-family:sans-serif; color:#FFFFFF;
+}
+.FtoFootI
+{
+    font-family:sans-serif; font-size:12px;color:#FFFFFF; font-weight:bold;
+}
+.FtoPagesI
+{
+   font-family:Helvetica, sans-serif; color:#FFFFFF; font-size:24px;
+}
+.FtoFormI
+{
+    font-family:sans-serif; color:#FFFFFF; font-size:20px
+}
+.FtoFormII
+{
+    font-family:Arial, Helvetica, sans-serif; font-size:25px; font-weight:bold;
+}
+.FtoFormIII
+{
+    color: #FFFFFF; font-family: sans-serif; font-size:18px; font-weight:bold;
+}
+.FtoFormIV
+{
+    color: #FFFFFF; font-family: sans-serif; font-size:16px;
+}
+.Box
+{
+    border-right:silver 2px solid;
+	border-top: silver 2px solid;
+	border-left: silver 2px solid;  
+	border-bottom: silver 2px solid;
+	font-size:12px;
+	width:98%;
+    color:#3A060E;
+	font-weight:bold;	      
+    font-family:sans-serif;   
+}
+.BoxI
+{
+    border-right:silver 2px solid;
+	border-top: silver 2px solid;
+	border-left: silver 2px solid;  
+	border-bottom: silver 2px solid;
+	font-size:12px;
+	width:70%;
+    color:#3A060E;
+	font-weight:bold;	      
+    font-family:sans-serif;   
+}
+/**************************************F U E N T E S*************************************/
+.HandI
+{
+    cursor:pointer; text-decoration:none;
+}

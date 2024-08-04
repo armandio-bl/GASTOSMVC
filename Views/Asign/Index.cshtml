@@ -1,0 +1,85 @@
+﻿@model GASTOSMVC.Models.Asign
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/Tls/Tls.css" rel="stylesheet" />
+    <script src="~/Tls/Tls.js"></script>
+    <script type="text/javascript">
+        function SPSendCBX() {
+            gEBI("HDcbxUsr").value = gEBI("cbxUsr").value;
+            gEBI("Frm").action = "@Url.Action("ConsAsig", "Asign")"; gEBI("Frm").method = "post";
+            gEBI("Frm").submit();
+        }
+        function FNGuardar() {
+            if (!FNFrcWrt("cbxUsr", "Favor de seleccionar un Usuario", "cbxUsr")) return false;    
+            if (!FNFrcWrt("cbxMenu", "Favor de seleccionar un Menu", "cbxMenu")) return false;           
+            gEBI("Frm").action = "@Url.Action("Guardar", "Asign")"; gEBI("Frm").method = "post";
+            gEBI("Frm").submit();
+        }
+        function FNBorrar() {
+            if (gEBI("cbxUsr").value == "") return false;
+            if (confirm("¿Desea eliminar este regstro?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <form id="Frm" name="Frm">
+            <div class="container">
+                <h1>Asignación.</h1>
+                <div class="form-group">
+                    <label for="sel1">Selecciona un Usuario:</label>
+                    @Html.DropDownListFor(m => m.WIDUsr, Model.LCBXUser, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxUsr", @onChange = "SPSendCBX();" })
+                </div>
+
+                <div class="form-group">
+                    <label for="lUser">Selecciona un menu:</label>
+                    @Html.DropDownListFor(m => m.WIDMenu, Model.LCBXMenu, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxMenu" })
+                </div>
+                <br />
+                <input type="button" id="btnAdd" name="btnAdd" class="btn btn-default" value="Agregar" onclick="return FNGuardar()"/>
+                <br /><br />
+                <table id="tbl1" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Opción</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Asig in Model.IEnumAsig)
+                        {
+                            <tr>
+                                <td>
+                                    @Asig.Menu
+                                </td>
+                                <td>
+                                    <a href="@Url.Content("~/Asign/Borrar?IDDelUsr=" + Asig.WIDUsr + "&IDMenu=" + Asig.WIDMenu)" onclick="return FNBorrar()" target="iFRM"><img src="~/img/Del.gif" width="30px" height="30px" /></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" id="HDEsGuardar" name="HDEsGuardar" value="0" />
+            <input type="hidden" id="HDcbxUsr" name="HDcbxUsr" value="0" />
+        </form>
+    </div>
+</body>
+</html>

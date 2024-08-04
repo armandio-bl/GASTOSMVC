@@ -1,0 +1,40 @@
+﻿@model GASTOSMVC.Models.ROT
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Tls/Tls.css" rel="stylesheet" type="text/css" />
+    <script src="~/Tls/Tls.js" type="text/javascript"></script>
+    <script>
+        window.onload = SPLdTblX;
+    </script>
+    <title>ROT</title>
+</head>
+<body>
+    <table id="TblMn" width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="5%" valign="top" align="center" style="background-color: #870101">
+                @foreach (var Menu in Model.IEnumMenu)
+                {
+                    <a href="@Url.Action("Index", @Menu.Ruta)" target="iFRM"><img src="@Menu.Img" width="35px" height="35px" /></a><br />
+                }
+                </td>
+            <td width="95%" id="TD1" height="92%" valign="top">
+                <table width="100%">
+                    <tr>
+                        <td><label Class="FtoFormII">Bienvenido: @Model.WNomCom</label></td>
+                    </tr>
+                </table>
+                <iframe id="iFRM" name="iFRM" src="@Url.Action("Index", "Main")" frameborder="0" scrolling="auto"></iframe>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

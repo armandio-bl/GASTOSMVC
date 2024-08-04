@@ -1,0 +1,149 @@
+﻿@model GASTOSMVC.Models.TransGastos
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <link href="~/Tls/Tls.css" rel="stylesheet" />
+    <link href="~/Tls/TableResp.css" rel="stylesheet" />
+    <script src="~/Tls/Tls.js"></script>
+    <script type="text/javascript">
+
+        function fnClose() {
+            var modalX = gEBI("myModal");
+            modalX.style.display = "none";
+            var modalX = null;
+        }
+
+        function fnDel(nIDel) {
+            if (confirm("¿Desea eliminar este regstro?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        function fnRep() {
+            var modal = gEBI("myModal"); modal.style.display = "block";
+            var ncbxGas = gEBI("cbxGas").value;
+            var ncbxDia1 = gEBI("cbxDia1").value; var ncbxMes1 = gEBI("cbxMes1").value; var ncbxYear1 = gEBI("cbxYear1").value;
+            var ncbxDia2 = gEBI("cbxDia2").value; var ncbxMes2 = gEBI("cbxMes2").value; var ncbxYear2 = gEBI("cbxYear2").value;
+            gEBI("FrmRep").src = "@Url.Content("~/VISOR/VISOR.aspx")?ncbxGas=" + ncbxGas + "&ncbxDia1=" + ncbxDia1 + "&cbxMes1=" + ncbxMes1 + "&ncbxYear1=" + ncbxYear1 + "&ncbxDia2=" + ncbxDia2 + "&cbxMes2=" + ncbxMes2 + "&ncbxYear2=" + ncbxYear2;
+            var modal = null;
+        }
+
+        function fnEsActualiza() {
+            gEBI("HFEsActualiza").value = "1";
+            gEBI("Frm").action = "@Url.Action("Actualiza", "Main")"; gEBI("Frm").method = "post";
+            gEBI("Frm").submit();
+        }
+    </script>
+</head>
+<body>
+    <form id="Frm" name="Frm">
+        <div class="container">
+            <div class="form-group">
+                <label for="sel1">Semana: <b>@Model.WSemana</b></label>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Tipo de Gasto:</label>
+                @Html.DropDownListFor(m => m.WCBXGas, Model.LCBXGas, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxGas" })
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-1 control-label" for="sm">Día:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WDia1, Model.LCBXDia1, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxDia1" })
+                </div>
+                <label class="col-sm-1 control-label" for="sm">Mes:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WCBXMes1, Model.LCBXMes1, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxMes1" })
+                </div>
+                <label class="col-sm-1 control-label" for="sm">Año:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WCBXYear1, Model.LCBXYear1, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxYear1" })
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm">
+                <label class="col-sm-1 control-label" for="sm">Día:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WDia2, Model.LCBXDia2, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxDia2" })
+                </div>
+                <label class="col-sm-1 control-label" for="sm">Mes:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WCBXMes2, Model.LCBXMes2, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxMes2" })
+                </div>
+                <label class="col-sm-1 control-label" for="sm">Año:</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(m => m.WCBXYear2, Model.LCBXYear2, "-- Selecciona una opción --", new { @class = "form-control", @id = "cbxYear2" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Total: $ @Model.WTotal .-</label>
+            </div>
+
+        </div>
+
+        <br />
+        <center>
+            <input type="button" id="btnAct" name="btnAct" value="Actualizar" class="btnIndexIn" onMouseOut="InOut(this.id,'btnIndexIn')" onMouseOver="InOut(this.id,'btnIndexOut')" onclick="fnEsActualiza();">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btnVerRep" name="btnVerRep" value="Reporte" class="btnIndexIn" onMouseOut="InOut(this.id,'btnIndexIn')" onMouseOver="InOut(this.id,'btnIndexOut')" onclick="fnRep();">
+        </center>
+
+        <br />
+        <table id="tbl1" class="width200">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Concepto</th>
+                    <th>Gasto</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var TransGastos in Model.IEnumTransGastos)
+                {
+                    <tr>
+                        <td>
+                            @TransGastos.Fecha.ToString().Substring(0, 10)
+                        </td>
+                        <td>
+                            @TransGastos.Gastos
+                        </td>
+                        <td>
+                            @TransGastos.Gasto
+                        </td>
+                        <td>
+                            <a href="@Url.Content("~/Transaccion/Act?nIDGas="+@TransGastos.IDGas)" target="iFRM"><img src="~/img/edt.gif" width="30px" height="30px" /></a>
+                        </td>
+                        <td>
+                            <a href="@Url.Content("~/Main/Borrar?IDDelGas="+@TransGastos.IDGas)" onclick="return fnDel()" target="iFRM"><img src="~/img/Del.gif" width="30px" height="30px" /></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <input type="hidden" id="HFEsActualiza" name="HFEsActualiza" value="0" />
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fnClose();">&times;</span>
+                <p>
+                    <iframe id="FrmRep" name="FrmRep" frameborder="0" width="100%" height="400px" scrolling="auto"></iframe>
+                </p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
